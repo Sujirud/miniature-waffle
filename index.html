@@ -5,26 +5,55 @@
   <style>
     body {
         font-family: "Open Sans", sans-serif;
-        padding: 30px 20px;
+        padding: 20px;
         margin: auto;
+    }
+    .tab-container {
+        display: flex;
+        background-color: #333;
+        margin-bottom: 20px;
+    }
+    .tab {
+        flex: 1;
+        padding: 14px;
+        text-align: center;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .tab:hover {
+        background-color: #555;
+    }
+    .tab.active {
+        background-color: #0055b0;
+    }
+    .tab-content {
+        display: none;
+        padding: 20px;
+        animation: fadeEffect 0.5s;
+    }
+    .tab-content.active {
+        display: block;
     }
     .product-row {
         display: flex;
         align-items: center;
         max-width: 1000px;
-        border: 0.1px solid #ccc;
-        padding: 10px 20px 10px 25px;
+        border: 1px solid #ccc;
+        padding: 20px;
         gap: 25px;
         margin: auto;
+        overflow: auto;
     }
     .product-img {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         object-fit: cover;
     }
     .product-name {
         flex: 1;
-        font-size: 45px;
+        font-size: 60px;
     }
     .counter {
         display: flex;
@@ -34,16 +63,24 @@
     .arrow {
         cursor: pointer;
         user-select: none;
-        font-size: 30px;
+        font-size: 50px;
+        margin-top: 5px;
     }
     .quantity {
         margin: 0 20px;
-        font-size: 50px;
+        font-size: 65px;
     }
   </style>
 </head>
 <body>
 
+<div class="tab-container">
+    <div class="tab active" onclick="showTab(0)">Home</div>
+    <div class="tab" onclick="showTab(1)">About</div>
+    <div class="tab" onclick="showTab(2)">Contact</div>
+</div>
+
+<div id="section1" class="tab-content active">
 <div class="product-row">
     <img src="https://via.placeholder.com/60" class="product-img">
     <div class="product-name">Product A</div>
@@ -53,7 +90,6 @@
         <div class="arrow" onclick="changeQuantity('qty1', -1)">&#9660;</div>
     </div>
 </div>
-
 <div class="product-row">
     <img src="https://via.placeholder.com/60" class="product-img">
     <div class="product-name">Product B</div>
@@ -63,6 +99,31 @@
         <div class="arrow" onclick="changeQuantity('qty2', -1)">&#9660;</div>
     </div>
 </div>
+</div>
+
+<div id="section2" class="tab-content">
+<div class="product-row">
+    <img src="https://via.placeholder.com/60" class="product-img">
+    <div class="product-name">Product C</div>
+    <div class="counter">
+        <div class="arrow" onclick="changeQuantity('qty3', 1)">&#9650;</div>
+        <div id="qty3" class="quantity">0</div>
+        <div class="arrow" onclick="changeQuantity('qty3', -1)">&#9660;</div>
+    </div>
+</div>
+</div>
+
+<div id="section3" class="tab-content">
+<div class="product-row">
+    <img src="https://via.placeholder.com/60" class="product-img">
+    <div class="product-name">Product C</div>
+    <div class="counter">
+        <div class="arrow" onclick="changeQuantity('qty3', 1)">&#9650;</div>
+        <div id="qty3" class="quantity">0</div>
+        <div class="arrow" onclick="changeQuantity('qty3', -1)">&#9660;</div>
+    </div>
+</div>
+</div>
 
 <script>
     function changeQuantity(id, delta) {
@@ -70,6 +131,17 @@
         let qty = parseInt(quantityEl.textContent);
         qty = Math.max(0, qty + delta); // prevent negative numbers
         quantityEl.textContent = qty;
+    }
+
+    function showTab(index) {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => tab.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+
+      tabs[index].classList.add('active');
+      contents[index].classList.add('active');
     }
 </script>
 
