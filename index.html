@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+        font-family: "Open Sans", sans-serif;
+        max-width: 1000px;
+        padding: 30px 20px;
+        margin: auto;
+    }
+    .product-row {
+        display: flex;
+        align-items: center;
+        border: 0.1px solid #ccc;
+        padding: 5px 15px 6px 20px;
+        max-width: 500px;
+        gap: 20px;
+        margin: auto;
+    }
+    .product-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+    .product-name {
+        flex: 1;
+        font-weight: bold;
+    }
+    .counter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
+    }
+    .arrow {
+        cursor: pointer;
+        user-select: none;
+    }
+    .quantity {
+        margin-bottom: 3px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="product-row">
+    <img src="https://via.placeholder.com/60" class="product-img">
+    <div class="product-name">Product A</div>
+    <div class="counter">
+        <div class="arrow" onclick="changeQuantity('qty1', 1)">&#9650;</div>
+        <div id="qty1" class="quantity">0</div>
+        <div class="arrow" onclick="changeQuantity('qty1', -1)">&#9660;</div>
+    </div>
+</div>
+
+<div class="product-row">
+    <img src="https://via.placeholder.com/60" class="product-img">
+    <div class="product-name">Product B</div>
+    <div class="counter">
+        <div class="arrow" onclick="changeQuantity('qty2', 1)">&#9650;</div>
+        <div id="qty2" class="quantity">0</div>
+        <div class="arrow" onclick="changeQuantity('qty2', -1)">&#9660;</div>
+    </div>
+</div>
+
+<script>
+    function changeQuantity(id, delta) {
+        const quantityEl = document.getElementById(id);
+        let qty = parseInt(quantityEl.textContent);
+        qty = Math.max(0, qty + delta); // prevent negative numbers
+        quantityEl.textContent = qty;
+    }
+</script>
+
+</body>
+</html>
