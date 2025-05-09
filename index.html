@@ -13,6 +13,11 @@
     body::-webkit-scrollbar {
         display: none;
     }
+    img {
+        height: 100%;
+        max-height: 80px;
+        object-fit: cover;
+    }
     .tab-container {
         display: flex;
         width: 100%;
@@ -29,7 +34,7 @@
         padding: 15px;
         text-align: center;
         color: white;
-        font-size: 25px;
+        font-size: 30px;
         white-space: nowrap;
         cursor: pointer;
         transition: background-color 0.3s;
@@ -38,7 +43,7 @@
         background-color: #555;
     }
     .tab.active {
-        background-color: #0055b0;
+        background-color: #004ea2;
     }
     .tab-content {
         display: none;
@@ -47,9 +52,16 @@
     .tab-content.active {
         display: block;
     }
-    .section-total {
-        flex: 1;
-        font-size: calc(20px + 1vw);
+    .quantity-sum {
+        display: flex;
+        align-items: center;
+        background-color: #dddddd;
+        max-width: 1000px;
+        max-height: 30px;
+        padding: 10px 40px;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     .product-row {
         display: flex;
@@ -61,20 +73,6 @@
         margin: auto;
         margin-bottom: 3px;
         overflow: auto;
-    }
-    .product-row.sum {
-        display: none; 
-        background-color: #cccccc;
-        border: none;
-        max-height: 30px;
-        padding: 10px 40px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    .product-img {
-        height: 100%;
-        max-height: 80px;
-        object-fit: cover;
     }
     .product-name {
         flex: 1;
@@ -94,73 +92,47 @@
 <body>
 
 <div class="tab-container">
-    <div class="tab active" onclick="showTab(0)">Grocery</div>
-    <div class="tab" onclick="showTab(1)">Grocery-Drinks</div>
-    <div class="tab" onclick="showTab(2)">Meat And Dairy</div>
-    <div class="tab" onclick="showTab(3)">Veggies And Friuts</div>
-    <div class="tab" onclick="showTab(4)">Liquor</div>
-    <div class="tab" onclick="showTab(5)">Janitorial Supplies</div>
-    <div class="tab" onclick="updateCart(); showTab(6)">Shopping Cart</div>
+    <div class="tab active" onclick="showTab(0)">Products</div>
+    <div class="tab" onclick="updateCart(); showTab(1)">Shopping Cart</div>
 </div>
 
-<div id="section1" class="tab-content active">
-    <div class="product-row sum"><div class="section-total">Grocery Total :</div><div id="section1_sum" class="quantity" style="font-size: calc(20px + 1vw);">0</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/1/15/Cereal_Chokipik.png" class="product-img"><div class="product-name">Chokipik Cereal</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', 1)">&#9650;</div><div id="Chokipik Cereal" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/54/Sliced_Bread_Ron%27s.png" class="product-img"><div class="product-name">Ron's Sliced Bread</div><div class="arrow" onclick="changeQuantity('Ron\'s Sliced Bread', 1)">&#9650;</div><div id="Ron's Sliced Bread" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Ron\'s Sliced Bread', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/0/0e/Flour_Kraftung.png" class="product-img"><div class="product-name">Kraftung Flour</div><div class="arrow" onclick="changeQuantity('Kraftung Flour', 1)">&#9650;</div><div id="Kraftung Flour" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Kraftung Flour', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/5b/Oil_Lespieds.png" class="product-img"><div class="product-name">Lespieds Oil</div><div class="arrow" onclick="changeQuantity('Lespieds Oil', 1)">&#9650;</div><div id="Lespieds Oil" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Lespieds Oil', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/a/a9/Pasta_Panzati.png" class="product-img"><div class="product-name">Panzati Pasta</div><div class="arrow" onclick="changeQuantity('Panzati Pasta', 1)">&#9650;</div><div id="Panzati Pasta" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Panzati Pasta', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/9/97/Sugar_Powdered_Susu.png" class="product-img"><div class="product-name">Susu Sugar Powdered</div><div class="arrow" onclick="changeQuantity('Susu Sugar Powdered', 1)">&#9650;</div><div id="Susu Sugar Powdered" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Susu Sugar Powdered', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/c3/Coffee_Dark_Roast_Narvalo.png" class="product-img"><div class="product-name">Narvalo Coffee Dark Roast</div><div class="arrow" onclick="changeQuantity('Narvalo Coffee Dark Roast', 1)">&#9650;</div><div id="Narvalo Coffee Dark Roast" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Narvalo Coffee Dark Roast', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/b1/Tea_Black_Tea_Palace.png" class="product-img"><div class="product-name">TeaPalace Tea Black</div><div class="arrow" onclick="changeQuantity('TeaPalace Tea Black', 1)">&#9650;</div><div id="TeaPalace Tea Black" class="quantity">0</div><div class="arrow" onclick="changeQuantity('TeaPalace Tea Black', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/cf/Peanut_Butter_PB%27s.png" class="product-img"><div class="product-name">PB's Peanut Butter</div><div class="arrow" onclick="changeQuantity('PB\'s Peanut Butter', 1)">&#9650;</div><div id="PB's Peanut Butter" class="quantity">0</div><div class="arrow" onclick="changeQuantity('PB\'s Peanut Butter', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/6/66/Flour_Farine.png" class="product-img"><div class="product-name">Farine Flour</div><div class="arrow" onclick="changeQuantity('Farine Flour', 1)">&#9650;</div><div id="Farine Flour" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Farine Flour', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d8/Olive_Oil_Tupiges.png" class="product-img"><div class="product-name">Tupiges Olive Oil</div><div class="arrow" onclick="changeQuantity('Tupiges Olive Oil', 1)">&#9650;</div><div id="Tupiges Olive Oil" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Tupiges Olive Oil', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/84/Pasta_Spaghetti_Elo.png" class="product-img"><div class="product-name">Elo Pasta Spaghetti</div><div class="arrow" onclick="changeQuantity('Elo Pasta Spaghetti', 1)">&#9650;</div><div id="Elo Pasta Spaghetti" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Elo Pasta Spaghetti', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d6/Rice_Basmati_Lustupacru.png" class="product-img"><div class="product-name">Lustupacru Rice Basmati</div><div class="arrow" onclick="changeQuantity('Lustupacru Rice Basmati', 1)">&#9650;</div><div id="Lustupacru Rice Basmati" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Lustupacru Rice Basmati', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/57/Salt_Labalaine.png" class="product-img"><div class="product-name">Labalaine Salt</div><div class="arrow" onclick="changeQuantity('Labalaine Salt', 1)">&#9650;</div><div id="Labalaine Salt" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Labalaine Salt', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/36/Cake_Bon_Papa.png" class="product-img"><div class="product-name">Bon Papa Cake</div><div class="arrow" onclick="changeQuantity('Bon Papa Cake', 1)">&#9650;</div><div id="Bon Papa Cake" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bon Papa Cake', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d4/Cake_P%C3%A9pites.png" class="product-img"><div class="product-name">Pepites Cake</div><div class="arrow" onclick="changeQuantity('Pepites Cake', 1)">&#9650;</div><div id="Pepites Cake" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Pepites Cake', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/bd/Candy_Bonbek.png" class="product-img"><div class="product-name">Bonbek Candy</div><div class="arrow" onclick="changeQuantity('Bonbek Candy', 1)">&#9650;</div><div id="Bonbek Candy" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bonbek Candy', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/3a/Cereal_Crispy_Chibi.png" class="product-img"><div class="product-name">Crispy Chibi Cereal</div><div class="arrow" onclick="changeQuantity('Crispy Chibi Cereal', 1)">&#9650;</div><div id="Crispy Chibi Cereal" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Crispy Chibi Cereal', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/5a/Chocolate_Bar_Chocotte.png" class="product-img"><div class="product-name">Chocotte Chocolate Bar</div><div class="arrow" onclick="changeQuantity('Chocotte Chocolate Bar', 1)">&#9650;</div><div id="Chocotte Chocolate Bar" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Chocotte Chocolate Bar', -1)">&#9660;</div></div>
-</div>
-
-<div id="section2" class="tab-content">
-    <div class="product-row sum"><div class="section-total">Grocery-Drinks Total :</div><div id="section2_sum" class="quantity" style="font-size: calc(20px + 1vw);">0</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/b0/Bottled_Water_Aotte.png" class="product-img"><div class="product-name">Aotte Bottled Water</div><div class="arrow" onclick="changeQuantity('Aotte Bottled Water', 1)">&#9650;</div><div id="Aotte Bottled Water" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Aotte Bottled Water', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/51/Orange_Juice_Bio_Juice.png" class="product-img"><div class="product-name">Bio Juice Orange Juice</div><div class="arrow" onclick="changeQuantity('Bio Juice Orange Juice', 1)">&#9650;</div><div id="Bio Juice Orange Juice" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bio Juice Orange Juice', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/dc/Soda_Cola.png" class="product-img"><div class="product-name">Cola Soda</div><div class="arrow" onclick="changeQuantity('Cola Soda', 1)">&#9650;</div><div id="Cola Soda" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Cola Soda', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d7/Soda_Zap.png" class="product-img"><div class="product-name">Zap Soda</div><div class="arrow" onclick="changeQuantity('Zap Soda', 1)">&#9650;</div><div id="Zap Soda" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Zap Soda', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/2/2d/Apple_Juice_Bio_Juice.png" class="product-img"><div class="product-name">Bio Juice Apple Juice</div><div class="arrow" onclick="changeQuantity('Bio Juice Apple Juice', 1)">&#9650;</div><div id="Bio Juice Apple Juice" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bio Juice Apple Juice', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/6/61/Soda_Turko.png" class="product-img"><div class="product-name">Turko Soda</div><div class="arrow" onclick="changeQuantity('Turko Soda', 1)">&#9650;</div><div id="Turko Soda" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Turko Soda', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/34/Yoghurt_Fr%C3%BCgen.png" class="product-img"><div class="product-name">Frugen Yoghurt</div><div class="arrow" onclick="changeQuantity('Frugen Yoghurt', 1)">&#9650;</div><div id="Frugen Yoghurt" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Frugen Yoghurt', -1)">&#9660;</div></div>
-</div>
-
-<div id="section3" class="tab-content">
-    <div class="product-row sum"><div class="section-total">Meat And Dairy Total :</div><div id="section3_sum" class="quantity" style="font-size: calc(20px + 1vw);">0</div></div>
-    <div class="product-row"><img src="http://static.wikia.nocookie.net/supermarket-simulator/images/8/82/Cheese_Comt%C3%A9.png" class="product-img"><div class="product-name">Comte Cheese</div><div class="arrow" onclick="changeQuantity('Comte Cheese', 1)">&#9650;</div><div id="Comte Cheese" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Comte Cheese', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="http://static.wikia.nocookie.net/supermarket-simulator/images/3/38/Eggs_%288-Pack%29_Bio.png" class="product-img"><div class="product-name">Bio Eggs - 8 Pack</div><div class="arrow" onclick="changeQuantity('Bio Eggs - 8 Pack', 1)">&#9650;</div><div id="Bio Eggs - 8 Pack" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bio Eggs - 8 Pack', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="http://static.wikia.nocookie.net/supermarket-simulator/images/a/ae/Milk_Bourlait.png" class="product-img"><div class="product-name">Bourlait Milk</div><div class="arrow" onclick="changeQuantity('Bourlait Milk', 1)">&#9650;</div><div id="Bourlait Milk" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bourlait Milk', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="http://static.wikia.nocookie.net/supermarket-simulator/images/a/a3/Milk_6-Pack_Labol.png" class="product-img"><div class="product-name">Labol Milk - 6 Pack</div><div class="arrow" onclick="changeQuantity('Labol Milk - 6 Pack', 1)">&#9650;</div><div id="Labol Milk - 6 Pack" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Labol Milk - 6 Pack', -1)">&#9660;</div></div>
-</div>
-
-<div id="section4" class="tab-content">
-    <div class="product-row sum"><div class="section-total">Veggies And Friuts Total :</div><div id="section4_sum" class="quantity" style="font-size: calc(20px + 1vw);">0</div></div>
-</div>
-
-<div id="section5" class="tab-content">
-    <div class="product-row sum"><div class="section-total">Liquor Total :</div><div id="section5_sum" class="quantity" style="font-size: calc(20px + 1vw);">0</div></div>
-</div>
-
-<div id="section6" class="tab-content">
-    <div class="product-row sum"><div class="section-total">Janitorial Supplies Total :</div><div id="section6_sum" class="quantity" style="font-size: calc(20px + 1vw);">0</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/8f/Bleach_Jaja_Vevel.png" class="product-img"><div class="product-name">Jaja Vevel Bleach</div><div class="arrow" onclick="changeQuantity('Jaja Vevel Bleach', 1)">&#9650;</div><div id="Jaja Vevel Bleach" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Jaja Vevel Bleach', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/bb/Cleaner_Touprop.png" class="product-img"><div class="product-name">Touprop Cleaner</div><div class="arrow" onclick="changeQuantity('Touprop Cleaner', 1)">&#9650;</div><div id="Touprop Cleaner" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Touprop Cleaner', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/9/97/Dishwasher_Tablet_Cleandish.png" class="product-img"><div class="product-name">Cleandish Dishwasher Tablet</div><div class="arrow" onclick="changeQuantity('Cleandish Dishwasher Tablet', 1)">&#9650;</div><div id="Cleandish Dishwasher Tablet" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Cleandish Dishwasher Tablet', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/89/Hand_Soap_Savion.png" class="product-img"><div class="product-name">Savion Hand Soap</div><div class="arrow" onclick="changeQuantity('Savion Hand Soap', 1)">&#9650;</div><div id="Savion Hand Soap" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Savion Hand Soap', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/7/74/Shampoo_Kaya.png" class="product-img"><div class="product-name">Kaya Shampoo</div><div class="arrow" onclick="changeQuantity('Kaya Shampoo', 1)">&#9650;</div><div id="Kaya Shampoo" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Kaya Shampoo', -1)">&#9660;</div></div>
-    <div class="product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/c7/Toilet_Paper_Poudou.png" class="product-img"><div class="product-name">Poudou Toilet Paper</div><div class="arrow" onclick="changeQuantity('Poudou Toilet Paper', 1)">&#9650;</div><div id="Poudou Toilet Paper" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Poudou Toilet Paper', -1)">&#9660;</div></div>
+<div class="tab-content active">
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/1/15/Cereal_Chokipik.png"><div class="product-name">Chokipik Cereal</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', 1)">&#9650;</div><div id="Chokipik Cereal" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/54/Sliced_Bread_Ron%27s.png"><div class="product-name">Ron's Sliced Bread</div><div class="arrow" onclick="changeQuantity('Ron\'s Sliced Bread', 1)">&#9650;</div><div id="Ron's Sliced Bread" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Ron\'s Sliced Bread', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/0/0e/Flour_Kraftung.png"><div class="product-name">Kraftung Flour</div><div class="arrow" onclick="changeQuantity('Kraftung Flour', 1)">&#9650;</div><div id="Kraftung Flour" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Kraftung Flour', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/5b/Oil_Lespieds.png"><div class="product-name">Lespieds Oil</div><div class="arrow" onclick="changeQuantity('Lespieds Oil', 1)">&#9650;</div><div id="Lespieds Oil" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Lespieds Oil', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/a/a9/Pasta_Panzati.png"><div class="product-name">Panzati Pasta</div><div class="arrow" onclick="changeQuantity('Panzati Pasta', 1)">&#9650;</div><div id="Panzati Pasta" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Panzati Pasta', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/9/97/Sugar_Powdered_Susu.png"><div class="product-name">Susu Sugar Powdered</div><div class="arrow" onclick="changeQuantity('Susu Sugar Powdered', 1)">&#9650;</div><div id="Susu Sugar Powdered" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Susu Sugar Powdered', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/b0/Bottled_Water_Aotte.png"><div class="product-name">Aotte Bottled Water</div><div class="arrow" onclick="changeQuantity('Aotte Bottled Water', 1)">&#9650;</div><div id="Aotte Bottled Water" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Aotte Bottled Water', -1)">&#9660;</div></div>
+    <div class="sec2 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/82/Cheese_Comt%C3%A9.png"><div class="product-name">Comte Cheese</div><div class="arrow" onclick="changeQuantity('Comte Cheese', 1)">&#9650;</div><div id="Comte Cheese" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Comte Cheese', -1)">&#9660;</div></div>    
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/c3/Coffee_Dark_Roast_Narvalo.png"><div class="product-name">Narvalo Coffee Dark Roast</div><div class="arrow" onclick="changeQuantity('Narvalo Coffee Dark Roast', 1)">&#9650;</div><div id="Narvalo Coffee Dark Roast" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Narvalo Coffee Dark Roast', -1)">&#9660;</div></div>
+    <div class="sec2 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/38/Eggs_%288-Pack%29_Bio.png"><div class="product-name">Bio Eggs - 8 Pack</div><div class="arrow" onclick="changeQuantity('Bio Eggs - 8 Pack', 1)">&#9650;</div><div id="Bio Eggs - 8 Pack" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bio Eggs - 8 Pack', -1)">&#9660;</div></div>    
+    <div class="sec2 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/a/ae/Milk_Bourlait.png"><div class="product-name">Bourlait Milk</div><div class="arrow" onclick="changeQuantity('Bourlait Milk', 1)">&#9650;</div><div id="Bourlait Milk" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bourlait Milk', -1)">&#9660;</div></div>    
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/b1/Tea_Black_Tea_Palace.png"><div class="product-name">TeaPalace Tea Black</div><div class="arrow" onclick="changeQuantity('TeaPalace Tea Black', 1)">&#9650;</div><div id="TeaPalace Tea Black" class="quantity">0</div><div class="arrow" onclick="changeQuantity('TeaPalace Tea Black', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/cf/Peanut_Butter_PB%27s.png"><div class="product-name">PB's Peanut Butter</div><div class="arrow" onclick="changeQuantity('PB\'s Peanut Butter', 1)">&#9650;</div><div id="PB's Peanut Butter" class="quantity">0</div><div class="arrow" onclick="changeQuantity('PB\'s Peanut Butter', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/6/66/Flour_Farine.png"><div class="product-name">Farine Flour</div><div class="arrow" onclick="changeQuantity('Farine Flour', 1)">&#9650;</div><div id="Farine Flour" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Farine Flour', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d8/Olive_Oil_Tupiges.png"><div class="product-name">Tupiges Olive Oil</div><div class="arrow" onclick="changeQuantity('Tupiges Olive Oil', 1)">&#9650;</div><div id="Tupiges Olive Oil" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Tupiges Olive Oil', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/84/Pasta_Spaghetti_Elo.png"><div class="product-name">Elo Pasta Spaghetti</div><div class="arrow" onclick="changeQuantity('Elo Pasta Spaghetti', 1)">&#9650;</div><div id="Elo Pasta Spaghetti" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Elo Pasta Spaghetti', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d6/Rice_Basmati_Lustupacru.png"><div class="product-name">Lustupacru Rice Basmati</div><div class="arrow" onclick="changeQuantity('Lustupacru Rice Basmati', 1)">&#9650;</div><div id="Lustupacru Rice Basmati" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Lustupacru Rice Basmati', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/57/Salt_Labalaine.png"><div class="product-name">Labalaine Salt</div><div class="arrow" onclick="changeQuantity('Labalaine Salt', 1)">&#9650;</div><div id="Labalaine Salt" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Labalaine Salt', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/51/Orange_Juice_Bio_Juice.png"><div class="product-name">Bio Juice Orange Juice</div><div class="arrow" onclick="changeQuantity('Bio Juice Orange Juice', 1)">&#9650;</div><div id="Bio Juice Orange Juice" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bio Juice Orange Juice', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/dc/Soda_Cola.png"><div class="product-name">Cola Soda</div><div class="arrow" onclick="changeQuantity('Cola Soda', 1)">&#9650;</div><div id="Cola Soda" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Cola Soda', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d7/Soda_Zap.png"><div class="product-name">Zap Soda</div><div class="arrow" onclick="changeQuantity('Zap Soda', 1)">&#9650;</div><div id="Zap Soda" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Zap Soda', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/2/2d/Apple_Juice_Bio_Juice.png"><div class="product-name">Bio Juice Apple Juice</div><div class="arrow" onclick="changeQuantity('Bio Juice Apple Juice', 1)">&#9650;</div><div id="Bio Juice Apple Juice" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bio Juice Apple Juice', -1)">&#9660;</div></div>
+    <div class="sec2 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/a/a3/Milk_6-Pack_Labol.png"><div class="product-name">Labol Milk - 6 Pack</div><div class="arrow" onclick="changeQuantity('Labol Milk - 6 Pack', 1)">&#9650;</div><div id="Labol Milk - 6 Pack" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Labol Milk - 6 Pack', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/6/61/Soda_Turko.png"><div class="product-name">Turko Soda</div><div class="arrow" onclick="changeQuantity('Turko Soda', 1)">&#9650;</div><div id="Turko Soda" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Turko Soda', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/36/Cake_Bon_Papa.png"><div class="product-name">Bon Papa Cake</div><div class="arrow" onclick="changeQuantity('Bon Papa Cake', 1)">&#9650;</div><div id="Bon Papa Cake" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bon Papa Cake', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/d/d4/Cake_P%C3%A9pites.png"><div class="product-name">Pepites Cake</div><div class="arrow" onclick="changeQuantity('Pepites Cake', 1)">&#9650;</div><div id="Pepites Cake" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Pepites Cake', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/bd/Candy_Bonbek.png"><div class="product-name">Bonbek Candy</div><div class="arrow" onclick="changeQuantity('Bonbek Candy', 1)">&#9650;</div><div id="Bonbek Candy" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Bonbek Candy', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/3a/Cereal_Crispy_Chibi.png"><div class="product-name">Crispy Chibi Cereal</div><div class="arrow" onclick="changeQuantity('Crispy Chibi Cereal', 1)">&#9650;</div><div id="Crispy Chibi Cereal" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Crispy Chibi Cereal', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/5/5a/Chocolate_Bar_Chocotte.png"><div class="product-name">Chocotte Chocolate Bar</div><div class="arrow" onclick="changeQuantity('Chocotte Chocolate Bar', 1)">&#9650;</div><div id="Chocotte Chocolate Bar" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Chocotte Chocolate Bar', -1)">&#9660;</div></div>
+    <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/3/34/Yoghurt_Fr%C3%BCgen.png"><div class="product-name">Frugen Yoghurt</div><div class="arrow" onclick="changeQuantity('Frugen Yoghurt', 1)">&#9650;</div><div id="Frugen Yoghurt" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Frugen Yoghurt', -1)">&#9660;</div></div>
+    <div class="sec5 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/8f/Bleach_Jaja_Vevel.png"><div class="product-name">Jaja Vevel Bleach</div><div class="arrow" onclick="changeQuantity('Jaja Vevel Bleach', 1)">&#9650;</div><div id="Jaja Vevel Bleach" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Jaja Vevel Bleach', -1)">&#9660;</div></div>
+    <div class="sec5 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/b/bb/Cleaner_Touprop.png"><div class="product-name">Touprop Cleaner</div><div class="arrow" onclick="changeQuantity('Touprop Cleaner', 1)">&#9650;</div><div id="Touprop Cleaner" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Touprop Cleaner', -1)">&#9660;</div></div>
+    <div class="sec5 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/9/97/Dishwasher_Tablet_Cleandish.png"><div class="product-name">Cleandish Dishwasher Tablet</div><div class="arrow" onclick="changeQuantity('Cleandish Dishwasher Tablet', 1)">&#9650;</div><div id="Cleandish Dishwasher Tablet" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Cleandish Dishwasher Tablet', -1)">&#9660;</div></div>
+    <div class="sec5 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/8/89/Hand_Soap_Savion.png"><div class="product-name">Savion Hand Soap</div><div class="arrow" onclick="changeQuantity('Savion Hand Soap', 1)">&#9650;</div><div id="Savion Hand Soap" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Savion Hand Soap', -1)">&#9660;</div></div>
+    <div class="sec5 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/7/74/Shampoo_Kaya.png"><div class="product-name">Kaya Shampoo</div><div class="arrow" onclick="changeQuantity('Kaya Shampoo', 1)">&#9650;</div><div id="Kaya Shampoo" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Kaya Shampoo', -1)">&#9660;</div></div>
+    <div class="sec5 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/c7/Toilet_Paper_Poudou.png"><div class="product-name">Poudou Toilet Paper</div><div class="arrow" onclick="changeQuantity('Poudou Toilet Paper', 1)">&#9650;</div><div id="Poudou Toilet Paper" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Poudou Toilet Paper', -1)">&#9660;</div></div>
 </div>
 
 <div id="cart-section" class="tab-content">
@@ -191,38 +163,55 @@
         const cartSection = document.getElementById('cart-section');
         cartSection.innerHTML = ''; // Clear previous contents
 
-        const numbers = [1, 2, 3, 4, 5, 6];
-        numbers.forEach(number => {
-            const quantitySelector = `#section${number} .quantity`;
-            const sectionSumId = `section${number}_sum`;
+        const Numbers = [1, 2, 3, 4, 5]
+        const Store_names = ['Deli And Grocery', 'Meat And Dairy', 'Green Market', 'Liquor Store', 'Janitorial Supply']
+        Numbers.forEach(number => {
+            const section = `.sec${number}`
+            const allProducts = document.querySelectorAll(section);
 
-            const allQuantities = document.querySelectorAll(quantitySelector);
-            const quantities = Array.from(allQuantities).slice(1);
-            const quantitiesSum = document.getElementById(sectionSumId);
+            const allQuantities = [];
+            allProducts.forEach(section => {
+                const quantity = section.querySelector('.quantity');
+                allQuantities.push(quantity);
+            });
 
             let total = 0;
-            quantities.forEach(quantityEl => {
+            allQuantities.forEach(quantityEl => {
                 let value = quantityEl.value || quantityEl.textContent;
                 let qty = parseInt(value);
                 if (!isNaN(qty)) {
                     total += qty;
                 }
             });
-            quantitiesSum.textContent = total;
-        });
 
-        const allProducts = document.querySelectorAll('.product-row');
-        allProducts.forEach(product => {
-            const quantityDiv = product.querySelector('.quantity');
-            const quantity = parseInt(quantityDiv.textContent);
+            if (total > 0) {
+                const sumsection = document.createElement('div');
+                sumsection.classList.add('quantity-sum')
 
-            if (quantity > 0) {
-                const clonedProduct = product.cloneNode(true);
-                clonedProduct.style.display = 'flex';
-                const arrows = clonedProduct.querySelectorAll('.arrow');
-                arrows.forEach(arrow => arrow.remove());
-                cartSection.appendChild(clonedProduct);
+                const store_name = document.createElement('div');
+                store_name.style.fontSize = 'calc(20px + 1vw)';
+                store_name.style.flex = 1
+                store_name.textContent = Store_names[number - 1];
+
+                const sum = document.createElement('div');
+                sum.style.fontSize = 'calc(20px + 1vw)';
+                sum.textContent = total;
+
+                sumsection.appendChild(store_name);
+                sumsection.appendChild(sum);
+                cartSection.appendChild(sumsection);
             }
+
+            allProducts.forEach(product => {
+                const quantityDiv = product.querySelector('.quantity');
+                const quantity = parseInt(quantityDiv.textContent);
+                if (quantity > 0) {
+                    const clonedProduct = product.cloneNode(true);
+                    const arrows = clonedProduct.querySelectorAll('.arrow');
+                    arrows.forEach(arrow => arrow.remove());
+                    cartSection.appendChild(clonedProduct);
+                }
+            });
         });
     }
 
@@ -232,14 +221,13 @@
     });
 
     function adjustMargins(container = document) {
-        const images = document.querySelectorAll('.product-img');
-        const maxwidth = 110;
+        const images = document.querySelectorAll('img');
+        let maxwidth = 100;
 
         images.forEach(function (img) {
             const imageWidth = img.offsetWidth;
             const marginValue = (maxwidth - imageWidth) / 2;
-            img.style.marginRight = `${marginValue}px`;
-            img.style.marginLeft = `${marginValue}px`;
+            img.style.margin = `0 ${marginValue}px`;
         });
     }
 </script>
