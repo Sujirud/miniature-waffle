@@ -90,16 +90,17 @@
     #topBtn {
         position: fixed;
         bottom: 20px;
-        right: 30px;
+        left: 20px;
         z-index: 99;
-        font-size: 40px;
+        font-size: calc(30px + 1vw);
+        line-height: 0%;
         border: none;
         outline: none;
         background-color: #004ea2;
         color: white;
         cursor: pointer;
-        width: 80px;
-        padding: 10px;
+        width: calc(50px + 2vw);
+        height: calc(50px + 2vw);
         border-radius: 5px;
     }
     #topBtn:hover {
@@ -114,7 +115,7 @@
     <div class="tab" onclick="updateCart(); showTab(1)">Shopping Cart</div>
 </div>
 
-<button onclick="topFunction()" id="topBtn">&#11014</button>
+<button onclick="topFunction()" id="topBtn">⬆︎</button>
 
 <div class="tab-content active">
     <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/1/15/Cereal_Chokipik.png"><div class="product-name">Chokipik Cereal</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', 1)">&#9650;</div><div id="Chokipik Cereal" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', -1)">&#9660;</div></div>
@@ -161,7 +162,7 @@
     <div class="sec3 product-row"><img src=""><div class="product-name">New York Lemon</div><div class="arrow" onclick="changeQuantity('New York Lemon', 1)">&#9650;</div><div id="New York Lemon" class="quantity">0</div><div class="arrow" onclick="changeQuantity('New York Lemon', -1)">&#9660;</div></div>
     <div class="sec3 product-row"><img src=""><div class="product-name">New York Mango</div><div class="arrow" onclick="changeQuantity('New York Mango', 1)">&#9650;</div><div id="New York Mango" class="quantity">0</div><div class="arrow" onclick="changeQuantity('New York Mango', -1)">&#9660;</div></div>
     <div class="sec3 product-row"><img src=""><div class="product-name">New York Mushroom</div><div class="arrow" onclick="changeQuantity('New York Mushroom', 1)">&#9650;</div><div id="New York Mushroom" class="quantity">0</div><div class="arrow" onclick="changeQuantity('New York Mushroom', -1)">&#9660;</div></div>
-    <div class="sec2 product-row"><img src=""><div class="product-name">Don Bernardo Cheese Mozarella</div><div class="arrow" onclick="changeQuantity('Don Bernardo  Cheese Mozarella', 1)">&#9650;</div><div id="Don Bernardo Cheese Mozarella" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Don Bernardo Cheese Mozarella', -1)">&#9660;</div></div>
+    <div class="sec2 product-row"><img src=""><div class="product-name">Don Bernardo Cheese Mozarella</div><div class="arrow" onclick="changeQuantity('Don Bernardo Cheese Mozarella', 1)">&#9650;</div><div id="Don Bernardo Cheese Mozarella" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Don Bernardo Cheese Mozarella', -1)">&#9660;</div></div>
     <div class="sec2 product-row"><img src=""><div class="product-name">Don Bernardo Cheese Parmesan</div><div class="arrow" onclick="changeQuantity('Don Bernardo Cheese Parmesan', 1)">&#9650;</div><div id="Don Bernardo Cheese Parmesan" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Don Bernardo Cheese Parmesan', -1)">&#9660;</div></div>
     <div class="sec1 product-row"><img src=""><div class="product-name">Hone Honey</div><div class="arrow" onclick="changeQuantity('Hone Honey', 1)">&#9650;</div><div id="Hone Honey" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Hone Honey', -1)">&#9660;</div></div>
     <div class="sec2 product-row"><img src=""><div class="product-name">Stark Tuna</div><div class="arrow" onclick="changeQuantity('Stark Tuna', 1)">&#9650;</div><div id="Stark Tuna" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Stark Tuna', -1)">&#9660;</div></div>
