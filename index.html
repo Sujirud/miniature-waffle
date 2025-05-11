@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <style>
     body {
-        font-family: "Open Sans", sans-serif;
+        font-family: 'Trebuchet MS', "Open Sans", sans-serif;
         padding: 20px;
         margin: auto;
     }
@@ -87,23 +87,28 @@
     .quantity {
         font-size: calc(30px + 2vw);
     }
-    #topBtn {
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        z-index: 99;
-        font-size: 50px;
-        line-height: 50px;
+    .btn {
+        display: inline-block;
         border: none;
-        outline: none;
         background-color: #004ea2;
         color: white;
         cursor: pointer;
-        padding: 0 10px 5px 10px;
+        padding: 10px;
         border-radius: 5px;
     }
-    #topBtn:hover {
+    .btn:hover {
         background-color: #555;
+    }
+    .btn.top {
+        font-family: menlo;
+        font-size: 100px;
+        line-height: 10px;
+        padding-top: 55px;
+        text-align: center;
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        z-index: 99;  
     }
   </style>
 </head>
@@ -114,7 +119,7 @@
     <div class="tab" onclick="updateCart(); showTab(1)">Shopping Cart</div>
 </div>
 
-<button onclick="topFunction()" id="topBtn">⬆︎</button>
+<button onclick="topFunction()" class="btn top">^</button>
 
 <div class="tab-content active">
     <div class="sec1 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/1/15/Cereal_Chokipik.png"><div class="product-name">Chokipik Cereal</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', 1)">&#9650;</div><div id="Chokipik Cereal" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Chokipik Cereal', -1)">&#9660;</div></div>
@@ -287,6 +292,7 @@
     <div class="sec4 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/f/f1/Wine_Heng.png"><div class="product-name">Heng Wine</div><div class="arrow" onclick="changeQuantity('Heng Wine', 1)">&#9650;</div><div id="Heng Wine" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Heng Wine', -1)">&#9660;</div></div>
     <div class="sec4 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/c/c3/Whiskey_Japanese.png"><div class="product-name">Japanese Whiskey</div><div class="arrow" onclick="changeQuantity('Japanese Whiskey', 1)">&#9650;</div><div id="Japanese Whiskey" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Japanese Whiskey', -1)">&#9660;</div></div>
     <div class="sec4 product-row"><img src="https://static.wikia.nocookie.net/supermarket-simulator/images/e/e5/Wine_Pouilleux.png"><div class="product-name">Poilleux Wine</div><div class="arrow" onclick="changeQuantity('Poilleux Wine', 1)">&#9650;</div><div id="Poilleux Wine" class="quantity">0</div><div class="arrow" onclick="changeQuantity('Poilleux Wine', -1)">&#9660;</div></div>
+    <div class="btn" style="font-size: 30px; float: right; margin: 20px;" onclick="updateCart(); showTab(1)">To Shopping Cart →</div>
 </div>
 
 <div id="cart-section" class="tab-content">
